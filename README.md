@@ -16,10 +16,12 @@ The method involves extracting frames from videos, passing them through a pre-tr
 
 ## Model Architecture
 - VGG16 CNN for feature extraction
- ![image](https://github.com/MuhammadUmerHussain/HospitalWeb/assets/108338561/809bac69-bb8b-4d41-906c-5a6d17ebd100)
+![image](https://github.com/RaofaizanAPSACS/action_recognition_dlp/assets/51090356/5f0c6321-0e67-44dd-be90-f7ed51dac977)
+
 
 - LSTM for temporal analysis
-  ![image](https://github.com/MuhammadUmerHussain/HospitalWeb/assets/108338561/506274b8-5657-4225-a6df-d20a264cfc5a)
+ ![image](https://github.com/RaofaizanAPSACS/action_recognition_dlp/assets/51090356/c9ec7efb-1615-4742-b066-225159ed302a)
+
 
 - Dense layers for classification
 
