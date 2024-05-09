@@ -1,35 +1,56 @@
-# Violence Detection in Surveillance Videos
+# Violence Detection using CNN + LSTM Neural Network
 
-## Objective
-The objective of this project is to develop a practical system for automatically detecting violence in surveillance videos using deep learning techniques. The increasing deployment of surveillance cameras necessitates the development of efficient automated systems for real-time violence detection and identification. These systems would significantly enhance the ability of law enforcement to intervene and apprehend perpetrators.
+## Introduction
+The prevalence of public violence has surged in recent times, necessitating the widespread use of surveillance cameras for monitoring. However, manually inspecting surveillance videos to identify violent incidents is inefficient. This project aims to automate the process using deep learning techniques.
 
-## Problem Statement
-The increase in public violence, particularly in settings like high schools and streets, necessitates the deployment of surveillance systems. However, existing systems often require human inspection of video footage to identify violent incidents, which is inefficient. This project aims to address this inefficiency by developing a system capable of automatically monitoring and identifying violent events in surveillance videos without human intervention.
+## Flowchart
+The method involves extracting frames from videos, passing them through a pre-trained VGG16 network, and then using the output of a final layer as input to an LSTM network for temporal analysis and violence detection.
 
-## Methodology
 
-### Data Collection and Preprocessing
-- The dataset consists of surveillance videos containing instances of violence and non-violence. Frames from these videos are extracted and resized to a suitable format for input to the neural network.
+## Dependencies
+- TensorFlow
+- Keras
+- OpenCV
+- Matplotlib
+- h5py
 
-### Pre-Trained Models
-- **VGG16**: The VGG16 model, pre-trained on the ImageNet dataset, is used to extract high-level features from video frames. The output of the pre-trained VGG16 model is fed into a dense layer to obtain transfer values.
-- **MobileNet**: The MobileNet model, pre-trained on the ImageNet dataset, is used to extract high-level features from video frames. The output of the pre-trained MobileNet model is fed into a dense layer to obtain transfer values.
+## Model Architecture
+- VGG16 CNN for feature extraction
+ ![image](https://github.com/MuhammadUmerHussain/HospitalWeb/assets/108338561/809bac69-bb8b-4d41-906c-5a6d17ebd100)
 
-### Recurrent Neural Network (LSTM)
-- The transfer values from VGG16 and MobileNet are input to a Long Short-Term Memory (LSTM) network. LSTM is chosen for its ability to analyze temporal information in the video frames. The LSTM architecture is designed with appropriate input dimensions to process the 20 frames per video.
+- LSTM for temporal analysis
+  ![image](https://github.com/MuhammadUmerHussain/HospitalWeb/assets/108338561/506274b8-5657-4225-a6df-d20a264cfc5a)
 
-### Model Training
-- The LSTM network is trained using a subset of the dataset, with epochs and batch size specified. The model is trained to classify videos as violent or non-violent based on the features extracted by VGG16 and processed by LSTM.
+- Dense layers for classification
 
-### Model Evaluation
-- The trained model is evaluated on a separate test set comprising 20% of the total videos. Performance metrics such as loss and accuracy are computed to assess the model's effectiveness in violence detection.
+
+## Installation
+
+python
+pip install tensorflow keras opencv-python
+
+
+
+## Imports
+python
+%matplotlib inline
+import cv2
+import os
+import numpy as np
+import keras
+import matplotlib.pyplot as plt
+from random import shuffle
+from tensorflow.keras.applications import VGG16
+from tensorflow.keras import backend as K
+from tensorflow.keras.models import Model, Sequential
+from tensorflow.keras.layers import Input, LSTM, Dense, Activation
+import sys
+import h5py
 
 ## Results
-The trained model achieved a validation accuracy of 93.5% on the test set, demonstrating its efficacy in automatically detecting violence in surveillance videos. The model's loss and accuracy trends over epochs are visualized to provide insights into its training dynamics.
+- Achieved accuracy: 93.5% on test data
+- Model loss and accuracy visualizations provided in results/ directory
 
 ## References
-- Simonyan, K., & Zisserman, A. (2015). Very deep convolutional networks for large-scale image recognition. arXiv preprint arXiv:1409.1556.
-- Hochreiter, S., & Schmidhuber, J. (1997). Long short-term memory. Neural computation, 9(8), 1735-1780.
-- Chollet, F. et al. Keras.
-- OpenCV Library Documentation.
-- Matplotlib Documentation.
+- [VGG16 Paper](https://arxiv.org/abs/1409.1556)
+- [LSTM Paper](https://www.bioinf.jku.at/publications/older/2604.pdf)
